@@ -1,0 +1,47 @@
+<%- include("partials/header.ejs") %>
+  <div class="main-container">
+    <div class="weather-card">
+      <h1 class="title">Will it Rain Tomorrow?</h1>
+      <p class="subtitle">Powered by OpenWeatherMap</p>
+
+      <form class="input-group" action="/Find" method="POST">
+        <input type="text" id="locationInput" name="city" placeholder="Enter city name..." />
+        <select id="timePicker" name="time" >
+          <option value="" disabled selected hidden>Enter Time</option>
+          <option value="00:00:00">00:00</option>
+          <option value="03:00:00">03:00</option>
+          <option value="06:00:00">06:00</option>
+          <option value="09:00:00">09:00</option>
+          <option value="12:00:00">12:00</option>
+          <option value="15:00:00">15:00</option>
+          <option value="18:00:00">18:00</option>
+          <option value="21:00:00">21:00</option>
+        </select>
+        <button id="checkBtn">Check</button>
+      </form>
+      <% if (locals.result){ %>
+        <div class="result" id="result">
+            <div class="icon"><%= icon %></div>
+            <div class="details">
+                <p class="answer">
+                    <strong>
+                        <%= Prediction  %> <%= city%> at <%= time  %>
+                    </strong>
+                </p>
+                <p>💧 Chance of rain: <%= Percentage_rain  %>%</p>
+                <p>🌡️ High: <%= Temperature_high  %> °C | Low: <%= Temperature_low  %> °C</p>
+                <p>Description: <%= Description  %></p>
+            </div>
+        </div>
+      <% }if (locals.error) { %>
+        <div class="error-message">
+          ⚠️ <%= error %>
+        </div>
+      <% } %>
+
+      <div id="Ab_div"><a href="/About" id="About_button">About</a></div>
+      
+    </div>
+  </div>
+</body>
+</html>
