@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import axios from "axios";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT ||3000;
 const key = process.env.WEATHER_API_KEY;
 const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
